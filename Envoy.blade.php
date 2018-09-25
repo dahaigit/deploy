@@ -2,7 +2,6 @@
 
 @task('deploy', ['on' => ['web-1', 'web-2'], 'parallel' => true])
 cd /var/www/deploy
-
 git pull origin master
 composer install --no-dev
 cp .env.production .env

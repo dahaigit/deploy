@@ -5,5 +5,4 @@ cd /var/www/deploy
 git pull origin master
 composer install --no-dev
 cp .env.production .env
-php artisan key:generate
 @endtask

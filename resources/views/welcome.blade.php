@@ -76,7 +76,7 @@
 
             <div class="content">
                 <div class="title m-b-md">
-                    Laravel deploy
+                    Laravel queue
                 </div>
 
                 <div class="links">

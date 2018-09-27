@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Jobs\SendDeployEmail;
+use App\User;
 use Illuminate\Http\Request;
 
 class HomeController extends Controller
@@ -24,5 +26,21 @@ class HomeController extends Controller
     public function index()
     {
         return view('home');
+    }
+
+    /**
+     * 分发任务，发送邮件
+     */
+    public function email(Request $request)
+    {
+        $user = auth()->user();
+
+        if (!$user) {
+            dd('没有用户');
+        }
+
+        $this->dispatch(new SendDeployEmail($user));
+        dd('加入队列成功');
+
     }
 }

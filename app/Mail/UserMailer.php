@@ -3,10 +3,16 @@ namespace App\Mailer;
 
 class UserMailer  extends Mailer
 {
+    public $user;
+
+    public function __construct($user)
+    {
+        $this->user = $user;
+    }
     /**
      * 用户注册时发送邮件通知
      */
-    public function register($user)
+    public function register()
     {
         $data = [
             'username' => '二狗子',
@@ -14,7 +20,7 @@ class UserMailer  extends Mailer
         $subject = 'user register subject';
         $view = 'emails.user.register';
 
-        $this->sendTo($user, $subject, $view, $data);
+        $this->sendTo($this->user, $subject, $view, $data);
     }
 
     public function cloudRegister($user)
@@ -25,6 +31,6 @@ class UserMailer  extends Mailer
         $subject = '欢迎注册mauto会员';
         $view = 'user_register_modes';
 
-        $this->cloudTo($user, $subject, $view, $data);
+        $this->cloudTo($this->user, $subject, $view, $data);
     }
 }

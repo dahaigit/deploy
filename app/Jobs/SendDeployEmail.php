@@ -34,8 +34,7 @@ class SendDeployEmail implements ShouldQueue
      */
     public function handle()
     {
-        $user = $this->user;
-
+//        $user = $this->user;
 //        $username = $user->username;
 //        $email = $user->email;
 //
@@ -46,6 +45,7 @@ class SendDeployEmail implements ShouldQueue
 //            $message->subject('队列测试');
 //            $message->to($email);
 //        });
-        UserMailer::cloudRegister($user);
+        $mailer = new UserMailer();
+        $mailer->cloudRegister($this->user);
     }
 }

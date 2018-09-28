@@ -36,6 +36,6 @@ class SendDeployEmail implements ShouldQueue
      */
     public function handle()
     {
-        $this->mailer->cloudRegister($this->user);
+        $this->mailer->register($this->user);
     }
 }

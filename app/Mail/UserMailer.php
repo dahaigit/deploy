@@ -16,15 +16,4 @@ class UserMailer  extends Mailer
 
         $this->sendTo($user, $subject, $view, $data);
     }
-
-    public function cloudRegister($user)
-    {
-        $data = [
-            '%username%' => [$user->name],
-        ];
-        $subject = '欢迎注册mauto会员';
-        $view = 'user_register_modes';
-
-        $this->cloudTo($user, $subject, $view, $data);
-    }
 }

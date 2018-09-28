@@ -20,7 +20,7 @@ class UserMailer  extends Mailer
     public function cloudRegister($user)
     {
         $data = [
-            '%username%' => ['二狗子'],
+            '%username%' => [$user->name],
         ];
         $subject = '欢迎注册mauto会员';
         $view = 'user_register_modes';

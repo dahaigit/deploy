@@ -2,6 +2,7 @@
 
 namespace App\Jobs;
 
+use App\Mailer\UserMailer;
 use Illuminate\Bus\Queueable;
 use Illuminate\Queue\SerializesModels;
 use Illuminate\Queue\InteractsWithQueue;
@@ -15,6 +16,7 @@ class SendDeployEmail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
+
     /**
      * Create a new job instance.
      *
@@ -34,17 +36,16 @@ class SendDeployEmail implements ShouldQueue
     {
         $user = $this->user;
 
-        $username = $user->username;
-        $email = $user->email;
-
-        Log::info($email);
-
-        Mail::send('emails.sayok', [
-            'username' => $username
-        ], function ($message) use ($email){
-            $message->from('a2210411072@163.com', '大海测试1111');
-            $message->subject('队列测试');
-            $message->to($email);
-        });
+//        $username = $user->username;
+//        $email = $user->email;
+//
+//        Mail::send('emails.sayok', [
+//            'username' => $username
+//        ], function ($message) use ($email){
+//            $message->from('a2210411072@163.com', '大海测试1111');
+//            $message->subject('队列测试');
+//            $message->to($email);
+//        });
+        UserMailer::register($user);
     }
 }

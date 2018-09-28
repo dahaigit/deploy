@@ -46,6 +46,6 @@ class SendDeployEmail implements ShouldQueue
 //            $message->subject('队列测试');
 //            $message->to($email);
 //        });
-        UserMailer::register($user);
+        UserMailer::cloudRegister($user);
     }
 }

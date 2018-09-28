@@ -16,6 +16,7 @@ class SendDeployEmail implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $user;
+    protected $mailer;
 
     /**
      * Create a new job instance.
@@ -25,6 +26,7 @@ class SendDeployEmail implements ShouldQueue
     public function __construct($user)
     {
         $this->user = $user;
+        $this->mailer = new UserMailer();
     }
 
     /**
@@ -34,18 +36,6 @@ class SendDeployEmail implements ShouldQueue
      */
     public function handle()
     {
-//        $user = $this->user;
-//        $username = $user->username;
-//        $email = $user->email;
-//
-//        Mail::send('emails.sayok', [
-//            'username' => $username
-//        ], function ($message) use ($email){
-//            $message->from('a2210411072@163.com', '大海测试1111');
-//            $message->subject('队列测试');
-//            $message->to($email);
-//        });
-        $mailer = new UserMailer();
-        $mailer->cloudRegister($this->user);
+        $this->mailer->cloudRegister($this->user);
     }
 }
